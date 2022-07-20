@@ -1,0 +1,17 @@
+X: 1
+T: from a.midi
+M: 3/4
+L: 1/8
+Q:1/4=72
+K:C
+V:1
+%%MIDI program 15
+%%MIDI program 15
+DD D2 D2| \
+dA A2 A2|
+AB c2 G2| \
+FE D2 D2|
+FC F2 G2| \
+AA A2 A2|
+DE F2 G2| \
+FE D2 D2|

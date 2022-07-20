@@ -1,0 +1,338 @@
+%abc::::::::::
+I:abc-charset utf-8
+%%writefields NL::::::::::
+
+T:xNincsen pénzem van erszényem...xxx[
+L:1/4
+K:F
+S:gyergyó
+X:1
+g/g/g/f/ d/f/f/d/ | c/c/c/G/ d2  |
+w: Nin-csen pén-zem van er-szé-nyem jó bort i-hat-nák
+g/g/g/f/ d/f/f/d/ | c/c/c/B/ G2  |
+w: Nin-csen lo-vam van kan-tá-rom lo-va-gol-hat-nák
+B/c/c/B/ d/d/d/B/ | B/c/c/B/ d2 |
+w: Vagy-on e-kém nin-csen föl-dem jól be-szánt-hat-nám
+B/c/c/B/ d/d/d/B/ | B/c/c/B/ G2 |
+w: Vagy-on e-rőm, nincs sze-re-tőm, há-za-sod-hat-nám
+B/cB/ d2 | B/cB/ d2 |
+w:  A-jajj-jaj jaj A-jajj-jaj jaj
+B/cB/ G2 |
+w: A-jajj-jaj jaj
+W: Ha nálunk jő guzsalyasba csendesen járjon
+W: A mi titkos záros ajtónk meg ne roppanjon
+W: Édesanyám olyan betyár ebren aluvó
+W: Amit mi most beszélünk meghallgattató
+W:
+W: Titkos beszéd nem esik meg szerelem nélkül
+W: A szerelem nem esik meg páros csók nélkül
+W: Adsza kezed jobb kezembe, fordojunk egyet
+W: Menjünk ki a gyümölcsösbe ott szedjünk meggyet
+
+X: 2
+T: Szilágysági dallam
+O: Dűvő, Szilágysági
+%N: https://library.hungaricana.hu/hu/view/ZTI_AP_05241-05260/
+M: 2/4
+L: 1/16
+Q:1/4=129
+K:F
+V:1
+f2d2d2d2| d2d2B2B2 | d4<d4 |f8|
+f2d2d2d2| d2d2B2B2| c4<c4| _e8|
+d6 c2| B2A2G2_G2| G4 c4| B8|
+d2 d2 g2 f2| d2 B2 c2 B2| A4<G4| G8|
+
+Q:1/4=114
+K:Bb
+X:3
+T:Addig megyek, míg a szememel látok
+S:Szilágysági magyar népzene 151.
+O:Varsolc, Kis Zsuzsanna (14), 1970.12.11
+M:2/4
+L:1/4
+BA G<d| d/c/G/B/ | A<G G z|
+w:Ad-dig me-gyek, még a sze-mem-mel lá-tok,
+d/d/B/B/ c/d/e/c/| f<d dz|
+w: Még egy sű-rű er-dő-re rá-ta-lá-lok
+d/d/B/B/ c/d/e/c/| f<d G>z|
+w: sű-rü er-dő kö-ze-pé-be ka-szár-nya
+{A}BA G<{/B}d| d/c/G/B/ | A<G G z |
+w: O-da le-szek há-rom é-vig be-zár-va.
+W: Addig megyek, még a szememmel látok
+W: Még egy gyászos temetőre találok,
+W: Gyásztemető, én leszek a halottja,
+W: Barna kislány, te vagy annak az oka.
+W:
+W: Fehér gyolcsból csináltatok zsebkendőt,
+W: Itt Varsolcon nem találok szeretőt,
+W: Elmegyek én más faluba keresni,
+W: Másfalusi fog igazán szeretni.
+W:
+W: Addig megyek még a szememmel látok,
+W: Még egy vadrucafészekre találok,
+W: Vadrucafészek sosincs tojás nélkül,
+W: Az én szívem soha nincs bánat nélkül.
+
+
+X:4
+T:Addig megyek...
+L:1/4
+M:4/4
+Q: 1/4=150
+O: Üsztürü, Napom napom, MNT 108
+K:F
+gfed | defe | d<d d z |
+w: Ad-dig me-gyek míg a vil-ág vi-lág lesz
+gfed | dce>d | c<c c z |
+w: Míg az é-gen két ra-gyo-gó csil-lag lesz
+BBdd | _edc B | dc B z |
+w: Csil-la-gos ég mer-re van az én ha-zám
+w: de-hogy si-rat rég el-va-gyok fe-led-ve
+dddG | B(B{d})/c>B | A<GG z |
+w: Mer-re si-rat en-gem az é-des anyám
+w: Meg se hal-tam már el va-gyok te-met-ve
+w:
+
+X:5
+T: Jobbról-balra sirítem
+O: Gyimesközéplok-Hidegség (Csík), Tímár Jánosné - Csorba Anna (63), 1968.07
+M:4/4
+L:1/4
+Q: 1/4=108
+K:C
+(3:2:2 G/D G G B/<B/d/d/ | d<c B z |
+G/G/B/B/ G/<G/d/d/ | A<A A z |
+G/<G/ (3:2:2 B/B B/G/ B | d/<d/ (3:2:2 A/A (3:2:2 B/B | G/z/ |
+e/e/e/<d/ e/<d/c/c/ | A<G G z |
+
+X:6
+T: Hortobágyi kocsmárosné
+K:Eb
+L:1/4
+M:4/4
+g/g/g/g/ g/g/g/g/ | g e c2 |
+f/f/f/f/ e/e/g/e/ | d d d2 |
+=B c d e | f/e/d/c/  | =B A F2 |
+f/e/d/c/ | =B/B/c/A/ | G G G2 |
+
+X:7
+T: Hortobágyi kocsmárosné
+O: Bazseva
+L:1/4
+K:C
+d/d/^c/e/ /f/d/c/e/ | f/d/ d z |
+a/a/g/f/ g/c/B/d/ | e/c/ c z  |
+a/a/g/f/ e/d/^c/A/ | B/^c/d z |
+g/g/g/f/ e/d/^c/d/ | A/A/ A z |
+
+X:8
+T: Napom, napom
+L:1/4
+K:C
+A<c B<E | A<c B<A |
+e>_e c<=e | e (e/_e/) (c/B/) A |
+A (A/B/) c (c/d/) | e<B B B |
+e>d ^c<e | ^f d d A |
+A>^G F A | d A F A |
+E<E E>G | ^F<E E z |
+
+X:9
+T: Ha bemegyek, ha bemegyek
+O: Berhida (Veszprém), Kudar József (72), 1965
+Q:1/4=116
+M:4/4
+L:1/4
+K:F
+G/B/A/G/ | d<g f/dd/ | c/d/c/B/ | AGG z |
+G/B/A/G/ | d<g f<d | | (5:4:4 B d/ c/B/ | AGGz |
+b>a g<a | g>f d/f z/ | a<g ^f<g | d>B c/Gz/ |
+(3:2:2 GB/ A/G/ | d g f d | B/d/ c/B/ | A<G G z |
+
+X:10
+T:Rég megmondtam bús gerlice
+L:1/4
+K:F
+f>e d<d | d d d A |
+d<d A<A | A<A d d |
+c>B A<G | G G A F |
+F>G A<A | A A d d |
+c>B A<G | G G A F |
+D/E/F/A/ G/F/E/C/ | D<D D z |
+
+X:11
+T: Megy a gőzös a Pregyálon felfelé
+L:1/4
+K:C
+A A ^G A | d c B>c | B<A A z
+e e f e | d d B G | c<c c z
+e e f e | A<A B c | d/d/ d/d/ e>c  | B<A E z
+A A ^G A | d c B>c | B<A A z
+
+X:12
+T: Mohácsiné elküldte ja páváját
+O: Mihók Antal (71), Egyházaskér (Torontál), 1968
+K: Bb
+M: 4/4
+L: 1/4
+D<G ^F<G | c B A>B | A G G/ z/ z |
+w: Mo-há-csi-né el-küld-te a pá-vá-ját.
+d d e<d | c<c A < F | B<B B z |
+w: Néz-ze mög a fia sza-ba-du-lá-sát.
+d<f e d | d<G A<B | c<c d A | B<G D z |
+w: De a páva szo-mo-rú-an visz-sza-száll a ta-nyá-ra
+D<G ^F<G | c < B A>B | A G G/ z/ z |
+w: Hogy a fi-át vi-szik a-kasz-tó-fá-ra.
+W: Mohácsiné, adjon Isten jó estét!
+W: Hazahoztuk fiának a holttestjit.
+W: Márványkőből csináltasson a fiának koporsót,
+W: Vágássa rá, hogy a fia betyár volt.
+%%https://library.hungaricana.hu/hu/view/ZTI_AP_07601-07620/?pg=444&layout=s
+
+X:13
+T: Putnokon már kihajtották a nyájat
+Q: 1/4=80
+K:Bb
+M:4/8
+K:1/4
+G>G A<G | ^F>G A<B | c2 B2 | A2 z2 |
+G>G A<G | ^F>G A<B | c2 B2 | A2 z2 |
+B>B d<d | e>d c<B | c2 B2 | A2 z2 |
+B>B d<d | c>B A<G | d>d d<c | B2 A2 | G2 z2 |
+
+%%https://zti.hungaricana.hu/en/audio/4932/?t=00%3A19%3A14#record-14719
+
+X:14
+T: A Savanyú tizenhat szél gatyája
+Q: 1/4=100
+L:1/4
+K:F
+G/A/ B c | d/d/G/c/ | B/A/ G z |
+w: A Sa-va-nyú ti-zen-hat szé' ga-tyá-ja
+d/d/ c g | f/d/ c d | B/A/ B z |
+w:Meg-a-kadt a tüs-ke-bo-kor á-gá-bó.
+d/d/ c g | f/d/ c d | B/A/ G z |
+w: Tüs-ke-bo-kor, e-reszd el a ga-tyá-mot,
+G/A/ B c | d/d/G/c/ | B/A/ G z |
+w: Ha ú-ré vagy, ha pa-rasz-té, le-vág-lok.
+W:s A Savanyu nem uri családból való,
+W: Nem kell neki selyem bársonytakaró,
+W: Nem kell neki az éddesanyja dunyhájó,
+W: Beéri ja tizenhat szé' gatyájó.
+W:
+W:A Savanyu este jevedd vacsorát,
+W: Kilenc zsandár benyitotta ajtaját.
+W: Ezüstkalán fényesedik asztalán.
+W: A Savanyu kijugrott az ablakán.
+
+X:15
+T: Szerelmes vagyok, de jól tudom, kibe
+Q: 1/4=116
+M:4/4
+L:1/4
+K:Bb
+g/g/f/e/ | d z/ B/ | c/c/B/A/ | G z |
+w: Sze-rel-mes va-gyok, de jól tu-dom, ki-be,
+d g | b/a/ g | a/g/f/e/ | d z |
+w: Egy bar-na le-gény csal-fa sze-mé-be.
+d g | b/a/ g | a/g/f/e/ | d z |
+w: Sze-re-tem is őt, ő is en-ge-met,
+g/g/f/e/ | d z/ B/ | c/c/B/A/ | G z |
+w: Ver-je meg a sors ha meg-csal en-ge-met.
+W: A mi kis tanyánk, egy puszta, néma táj,
+W: Az én szeretőm egy barna hajú lány.
+W: Barna hajú lány búsan sirdogál,
+W: Jobb helyet talál a babája vállán.
+W:
+W: Mit ér a rózsa, ha nincsne levele.
+W: Mit ér az a lány, ha nincs szeretője!
+W: Mondd meg, ha szeretsz, még enyém lehetsz,
+W: Pártfogód leszek, tudom, megemlegetsz.
+
+X:16
+T: Ágas-bogas a diófa teteje
+M:4/4
+L:1/4
+K:F
+D/D/ (3:2:2 GG2 B/B/ (3:2:2 dd2 ^c B3/2 A2 |
+c/c/ (3:2:2 cc2 B/B/d/d A A3/2 A2 |
+d>G c/c3/2 B/B/ (3:2:2dd2 ^c/B/ G2 |
+d/d/ (3:2:2 DD2 D/D/ (3:2:2 B2c A G3/2 G2 |
+W:Ágas-bogas a diófa teteje,
+W:Csak egy legényt neveltek a kedvemre.
+W:Azt az egyet nem adnám a világért,
+W:Az anyjának a mennybéli jussáért!
+W:
+W:Az anyjának nem nagy mennyben jussa,
+W:A fiának olyan édes a csókja!
+W:Olyan édes, el sem tudnám feledni,
+W:Csak még annál jobban tudnám szeretni!
+
+X: 17
+T: Dombon van a kisgyűrüsi Szent János
+S: https://zti.hungaricana.hu/en/9735/
+M:4/4
+L:1/4
+Q:1/4=102
+K:Bb
+G/A/ (3:2:2 G/D G/A/B/c/ | d B A z |
+G/A/ (3:2:2 G/D G/A/B/c/ | d B A z |
+d>B (3:2:2 df2 | e/d/c/d/ B/A/ G |
+(3:2:2 G/D G/A/ B/d/c/B3/4 | A<G G z
+W:Dombon van a kisgyűrüsi Szent János
+W:Dombon lakik kisgyűrüsi plébános
+W:Két sor ablak, emeletes a háza
+W:De sok kislány esküdni jár hozzája
+
+X:18
+T:Erre alá dörög az ég villámlik
+S:https://zti.hungaricana.hu/en/2731/
+L:1/4
+K:Bb
+G/>^F/G/A/ B/<A/B/c/ | d B A z |
+G/<^F/G/A/ B/<A/B/c/ | d < B A z |
+(3:2:2 d d2 B d | f/e/d/c/ d/B/ G |
+G/>D/G/A/ B/B/c/A/ | B < G G z |
+W: Erre alá dörög az ég villámlik
+W: A dombai csárádba be világít
+W: Ég a csárda, nincsen aki eloltsa
+W: Fáj a szívem nincs ki megvígasztalja
+W:
+W: Erre alá dörög az ég villámlik
+W: Fáj a szívem de kívülről nem látszik
+W: Fáj a szivem, de kivülről nem látszik
+W: Vad rózsafa halaványat virágzik
+W:
+W: Erre alá dörög az ég villámlik
+W: Szalajd kislány selyem szoknyád megázik
+W: Szalajd kislány selyem szoknyád megázik
+W: Piros arcod halaványat virágzik
+W:
+W: Már minálunk új divatot most kezdnek
+W:A legények házasodni nem mernek
+W: Mert mind olyan a mostani menyecske
+W: Szép az ura de még többet szeretne
+
+K:Bb
+X:19
+T:xxAzt a a gyűrűt
+L:1/4
+M:1/4
+d B A G | d B A  G |
+g/g/g/g/ f/g/f/e/ | d<d d z |
+g/g/g/g/ f/g/f/e/ | d c B z  |
+d g d c | B/A/G/^F/ | A<G G z |
+W: Kisangyalom, kisangyalom,
+W: kisangyalom, ha meguntál szeretni,
+W: hajtsál el a nagy vásárra eladni,
+W: hajtsál engem a vásárba eladni!
+W: Adjál oda a legelső kérőnek,\
+W: úgyis csak a régi szeretőm vesz meg!
+W:
+W: Azt a gyűrűt, azt a gyűrűt,
+W: azt a gyűrűt, amit adtam, add vissza,
+W: mert annak a gyémánt köve nem tiszta,
+W: mert annak a gyémánt köve nem tiszta!
+W: Én a gyűrűt soha vissza nem adom.
+W: Egye meg a rozsda a te ujjadon!
+

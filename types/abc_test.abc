@@ -1,0 +1,45 @@
+%abc
+
+X:72b
+T: Házasodik a tücsök
+K: F
+M: 2/4
+L: 1/4
+g2 | g/e/ f |
+a/g/f/c/ | d d |
+c2 | d/A/ B |
+d/c/B/A/ | G G |
+
+X:73
+T: Ha felmegyek a bugaci halomra...
+K: F
+M: 4/4
+L: 1/4
+Gg g/f/f/e/ | d/d/g2
+a/f/ f g/f/f/c/ | d<B B2 |
+d>_e d/c/ d/B/A/G/ | c/c/ d2
+g/d/d/c/ f B/A/ | B<G G2 |
+
+X:38
+T: Rimaszombat felől
+K: F
+M: 3/4
+K: F
+dgfefg |
+agfd | c2<d2
+fgag | d2 c2
+fdBG F2<G2
+
+X: 40
+T: Szilágysági dallam
+O: Dűvő, Szilágysági
+%N: https://library.hungaricana.hu/hu/view/ZTI_AP_05241-05260/
+M: 2/4
+L: 1/16
+Q:1/4=129
+K:F
+V:1
+f2d2d2d2| d2d2B2B2 | d4<d4 |f8|
+f2d2d2d2| d2d2B2B2| c4<c4| _e8|
+d6 c2| B2A2G2_G2| G4 c4| B8|
+d2 d2 g2 f2| d2 B2 c2 B2| A4<G4| G8|
