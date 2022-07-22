@@ -1,6 +1,6 @@
-%abc::::::::::
+%abc:::::::::::::
 I:abc-charset utf-8
-%%writefields NL::::::::::
+%%writefields NL:::::::::::::
 
 T:xNincsen pénzem van erszényem...xxx[
 L:1/4
@@ -73,7 +73,6 @@ W: Addig megyek még a szememmel látok,
 W: Még egy vadrucafészekre találok,
 W: Vadrucafészek sosincs tojás nélkül,
 W: Az én szívem soha nincs bánat nélkül.
-
 
 X:4
 T:Addig megyek...
@@ -335,4 +334,25 @@ W: mert annak a gyémánt köve nem tiszta,
 W: mert annak a gyémánt köve nem tiszta!
 W: Én a gyűrűt soha vissza nem adom.
 W: Egye meg a rozsda a te ujjadon!
+
+X:20
+T:
+M:4/4
+L:1/4
+K:C
+a a a a | a a a a | a a c
+
+X:21
+T:
+M:4/4
+L:1/4
+K:C
+a a a a   |  |  |  |  |  |
+
+X:22
+T:
+M:4/4
+L:1/4
+K:C
+a a a a | 
 

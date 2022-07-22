@@ -90,8 +90,7 @@ func (f *Front) Update(msg tea.Msg) (model tea.Model, cmd tea.Cmd) {
 			}
 		case "ctrl+x":
 			return f, tea.Quit
-
-		case "ctrl+d":
+		case "ctrl+i":
 			if f.editor != nil {
 				f.editor = nil
 				return f, nil

@@ -45,6 +45,7 @@ func NewEditor(id string) *Editor {
 			NewHeader("L", "1/4"),
 			NewHeader("K", "C"),
 		},
+		errorMsg: &ErrorMessage{},
 	}
 
 	e.lines = append(e.lines, NewLine("", abc.NewBeat(1, 4)))

@@ -86,7 +86,10 @@ func (l *Line) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			l.content, cmd = l.content.Update(msg)
 			l.ReIndex()
 			return l, cmd
-		case "/", "1", "2", "3", "<", ">", ".", ",", " ", "z", "|", "_", "=", "^", "(", ")":
+		case "/", "1", "2", "3", "<", ">", ".", ",", " ", "z", "|", "_", "=", "^", "(", ")", ":":
+			if msg.String() == " " && strings.HasSuffix(l.content.Value(), " ") {
+				return l, nil
+			}
 			l.content, cmd = l.content.Update(msg)
 			l.ReIndex()
 			l.addBar()
@@ -125,6 +128,10 @@ func (l *Line) addBar() {
 	}
 
 	if l.content.Value()[len(l.content.Value())-1] != ' ' {
+		return
+	}
+
+	if l.content.Cursor() != len(l.content.Value()) {
 		return
 	}
 
