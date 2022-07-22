@@ -1,9 +1,10 @@
 package ui
 
 import (
-	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/elek/abced/abcfile"
 	abc "github.com/elek/abced/types"
+	"github.com/zeebo/errs/v2"
 	"io/ioutil"
 	"os/exec"
 	"strings"
@@ -14,15 +15,17 @@ type Editor struct {
 	lines          []*Line
 	currentLine    int
 	selectedHeader string
+	errorMsg       *ErrorMessage
 }
 
-func NewEditorFromData(header map[string]string, lines []string) *Editor {
+func NewEditorFromData(header []abcfile.Header, lines []string) *Editor {
 	e := &Editor{
-		headers: []*Header{},
+		headers:  []*Header{},
+		errorMsg: &ErrorMessage{},
 	}
 
-	for k, v := range header {
-		e.headers = append(e.headers, NewHeader(k, v))
+	for _, v := range header {
+		e.headers = append(e.headers, NewHeader(v.Key, v.Value))
 	}
 
 	for _, l := range lines {
@@ -83,13 +86,13 @@ func (e *Editor) UpdateEditorMode(msg tea.Msg) (*Editor, tea.Cmd) {
 
 		switch msg.String() {
 		case "p":
-			go func() {
+			return e, func() tea.Msg {
 				err := e.Play()
 				if err != nil {
-					fmt.Println(err)
+					return ErrorMsg(err)
 				}
-			}()
-			return e, nil
+				return nil
+			}
 		case "ctrl+o":
 			e.lines = append(e.lines, NewLine(e.lines[e.currentLine].validContent, abc.NewBeat(1, 4)))
 			e.currentLine = len(e.lines) - 1
@@ -141,6 +144,7 @@ func (e *Editor) UpdateEditorMode(msg tea.Msg) (*Editor, tea.Cmd) {
 }
 
 func (e *Editor) Update(msg tea.Msg) (*Editor, tea.Cmd) {
+	e.errorMsg, _ = e.errorMsg.Update(msg)
 	if e.selectedHeader == "" {
 		return e.UpdateEditorMode(msg)
 	} else {
@@ -168,9 +172,13 @@ func (e *Editor) Play() error {
 	}
 
 	command := exec.Command("abc2midi", "/tmp/a.abc", id, "-o", "/tmp/out.midi")
-	_, err = command.CombinedOutput()
+	out, err := command.CombinedOutput()
 	if err != nil {
 		return err
+	}
+	if strings.Contains(string(out), "Error") {
+		lines := strings.Split(strings.Trim(string(out), "\n"), "\n")
+		return errs.Errorf("%s", lines[len(lines)-1])
 	}
 
 	command = exec.Command("timidity", "/tmp/out.midi")
@@ -199,5 +207,6 @@ func (e *Editor) View() string {
 	for i, _ := range e.lines {
 		s += e.lines[i].View() + "\n"
 	}
+	s += e.errorMsg.View()
 	return s
 }

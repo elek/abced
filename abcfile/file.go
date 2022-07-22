@@ -39,8 +39,8 @@ func (s *Score) SetValue(content string) {
 	s.Raw = content
 }
 
-func (s *Score) HeadersAndLines() (map[string]string, []string) {
-	headers := map[string]string{}
+func (s *Score) HeadersAndLines() ([]Header, []string) {
+	var headers []Header
 	var lines []string
 
 	for _, l := range strings.Split(s.Raw, "\n") {
@@ -54,7 +54,10 @@ func (s *Score) HeadersAndLines() (map[string]string, []string) {
 			lines = append(lines, l)
 			continue
 		}
-		headers[strings.TrimSpace(parts[0])] = strings.TrimSpace(parts[1])
+		headers = append(headers, Header{
+			Key:   strings.TrimSpace(parts[0]),
+			Value: strings.TrimSpace(parts[1]),
+		})
 	}
 	return headers, lines
 }
