@@ -1,6 +1,6 @@
-%abc:::::::::::::::::::::::::
+%abc:::::::::::::::::::::::::::::::::
 I:abc-charset utf-8
-%%writefields NL:::::::::::::::::::::::::
+%%writefields NL:::::::::::::::::::::::::::::::::
 
 T:Nincsen pénzem van erszényem...
 L:1/4
@@ -54,25 +54,25 @@ L:1/4
 BA G<d| d/c/G/B/ | A<G G z|
 w:Ad-dig me-gyek, még a sze-mem-mel lá-tok,
 d/d/B/B/ c/d/e/c/| f<d dz|
-w: Még egy sű-rű er-dő-re rá-ta-lá-lok
+w:Még egy sű-rű er-dő-re rá-ta-lá-lok
 d/d/B/B/ c/d/e/c/| f<d G>z|
-w: sű-rü er-dő kö-ze-pé-be ka-szár-nya
+w:sű-rü er-dő kö-ze-pé-be ka-szár-nya
 {A}BA G<{/B}d| d/c/G/B/ | A<G G z |
-w: O-da le-szek há-rom é-vig be-zár-va.
-W: Addig megyek, még a szememmel látok
-W: Még egy gyászos temetőre találok,
-W: Gyásztemető, én leszek a halottja,
-W: Barna kislány, te vagy annak az oka.
+w:O-da le-szek há-rom é-vig be-zár-va.
+W:Addig megyek, még a szememmel látok
+W:Még egy gyászos temetőre találok,
+W:Gyásztemető, én leszek a halottja,
+W:Barna kislány, te vagy annak az oka.
 W:
-W: Fehér gyolcsból csináltatok zsebkendőt,
-W: Itt Varsolcon nem találok szeretőt,
-W: Elmegyek én más faluba keresni,
-W: Másfalusi fog igazán szeretni.
+W:Fehér gyolcsból csináltatok zsebkendőt,
+W:Itt Varsolcon nem találok szeretőt,
+W:Elmegyek én más faluba keresni,
+W:Másfalusi fog igazán szeretni.
 W:
-W: Addig megyek még a szememmel látok,
-W: Még egy vadrucafészekre találok,
-W: Vadrucafészek sosincs tojás nélkül,
-W: Az én szívem soha nincs bánat nélkül.
+W:Addig megyek még a szememmel látok,
+W:Még egy vadrucafészekre találok,
+W:Vadrucafészek sosincs tojás nélkül,
+W:Az én szívem soha nincs bánat nélkül.
 
 X:4
 T:Addig megyek...
@@ -106,7 +106,7 @@ G/<G/ (3:2:2 B/B B/G/ B | d/<d/ (3:2:2 A/A (3:2:2 B/B | G/z/ |
 e/e/e/<d/ e/<d/c/c/ | A<G G z |
 
 X:6
-T: Hortobágyi kocsmárosné
+T:Hortobágyi kocsmárosné
 K:Eb
 L:1/4
 M:4/4
@@ -116,8 +116,8 @@ f/f/f/f/ e/e/g/e/ | d d d2 |
 f/e/d/c/ | =B/B/c/A/ | G G G2 |
 
 X:7
-T: Hortobágyi kocsmárosné
-O: Bazseva
+T:Hortobágyi kocsmárosné
+O:Bazseva
 L:1/4
 K:C
 d/d/^c/e/ /f/d/c/e/ | f/d/ d z |
@@ -137,8 +137,8 @@ A>^G F A | d A F A |
 E<E E>G | ^F<E E z |
 
 X:9
-T: Ha bemegyek, ha bemegyek
-O: Berhida (Veszprém), Kudar József (72), 1965
+T:Ha bemegyek, ha bemegyek
+O:Berhida (Veszprém), Kudar József (72), 1965
 Q:1/4=116
 M:4/4
 L:1/4
@@ -361,5 +361,4 @@ T:
 M:4/4
 L:1/4
 K:C
-
 

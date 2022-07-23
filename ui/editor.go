@@ -4,10 +4,6 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/elek/abced/abcfile"
 	abc "github.com/elek/abced/types"
-	"github.com/zeebo/errs/v2"
-	"io/ioutil"
-	"os/exec"
-	"strings"
 )
 
 type Editor struct {
@@ -75,12 +71,21 @@ func (e *Editor) UpdateEditorMode(current *Line, msg tea.Msg) (*Editor, tea.Cmd)
 		switch msg.String() {
 		case "p":
 			return e, func() tea.Msg {
-				err := e.Play()
+				err := Play(e)
 				if err != nil {
 					return ErrorMsg(err)
 				}
 				return nil
 			}
+		case "v":
+			return e, func() tea.Msg {
+				err := Show(e)
+				if err != nil {
+					return ErrorMsg(err)
+				}
+				return nil
+			}
+
 		case "ctrl+o":
 			e.lines = append(e.lines, NewLine(current.validContent, abc.NewBeat(1, 4)))
 			e.currentLine = len(e.lines) - 1
@@ -147,33 +152,6 @@ func (e *Editor) setFocus() {
 		}
 
 	}
-}
-
-func (e *Editor) Play() error {
-	c := e.GetABC()
-	firstLine := strings.Split(c, "\n")[0]
-	id := strings.TrimSpace(strings.Split(firstLine, ":")[1])
-	err := ioutil.WriteFile("/tmp/a.abc", []byte(c), 0644)
-	if err != nil {
-		return err
-	}
-
-	command := exec.Command("abc2midi", "/tmp/a.abc", id, "-o", "/tmp/out.midi")
-	out, err := command.CombinedOutput()
-	if err != nil {
-		return err
-	}
-	if strings.Contains(string(out), "Error") {
-		lines := strings.Split(strings.Trim(string(out), "\n"), "\n")
-		return errs.Errorf("%s", lines[len(lines)-1])
-	}
-
-	command = exec.Command("timidity", "/tmp/out.midi")
-	_, err = command.CombinedOutput()
-	if err != nil {
-		return err
-	}
-	return nil
 }
 
 func (e *Editor) GetABC() string {
