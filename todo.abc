@@ -1,6 +1,6 @@
-%abc:::::::::::::::::::::::
+%abc:::::::::::::::::::::::::
 I:abc-charset utf-8
-%%writefields NL:::::::::::::::::::::::
+%%writefields NL:::::::::::::::::::::::::
 
 T:Nincsen pénzem van erszényem...
 L:1/4
@@ -355,4 +355,11 @@ M:4/4
 L:1/4
 K:C
 a a a a |
+
+X:23
+T:
+M:4/4
+L:1/4
+K:C
+
 

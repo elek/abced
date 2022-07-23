@@ -3,11 +3,13 @@ package ui
 import (
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 )
 
 type Header struct {
-	Key  string
-	Text textinput.Model
+	Key      string
+	Text     textinput.Model
+	KeyStyle lipgloss.Style
 }
 
 func NewHeader(key string, value string) *Header {
@@ -16,8 +18,9 @@ func NewHeader(key string, value string) *Header {
 	ti.Blur()
 	ti.Prompt = ":"
 	return &Header{
-		Key:  key,
-		Text: ti,
+		Key:      key,
+		Text:     ti,
+		KeyStyle: lipgloss.NewStyle().Foreground(lipgloss.Color("#04B575")),
 	}
 }
 func (h *Header) Init() tea.Cmd {
@@ -31,7 +34,7 @@ func (h *Header) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (h *Header) View() string {
-	return h.Key + h.Text.View()
+	return h.KeyStyle.Render(h.Key) + h.Text.View()
 }
 
 var _ tea.Model = &Header{}

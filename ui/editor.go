@@ -40,6 +40,9 @@ func NewEditor(id string) *Editor {
 
 	e.lines = append(e.lines, NewHeader("X", id))
 	e.lines = append(e.lines, NewHeader("T", ""))
+	e.lines = append(e.lines, NewHeader("M", "4/4"))
+	e.lines = append(e.lines, NewHeader("L", "1/4"))
+	e.lines = append(e.lines, NewHeader("K", "C"))
 	e.lines = append(e.lines, NewLine("", abc.NewBeat(1, 4)))
 	e.FocusFirstScore()
 	return e
