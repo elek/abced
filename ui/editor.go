@@ -11,45 +11,37 @@ import (
 )
 
 type Editor struct {
-	headers        []*Header
-	lines          []*Line
-	currentLine    int
-	selectedHeader string
-	errorMsg       *ErrorMessage
+	lines       []tea.Model
+	currentLine int
+	errorMsg    *ErrorMessage
 }
 
-func NewEditorFromData(header []abcfile.Header, lines []string) *Editor {
+func NewEditorFromTune(tune *abcfile.Tune) *Editor {
 	e := &Editor{
-		headers:  []*Header{},
+		lines:    []tea.Model{},
 		errorMsg: &ErrorMessage{},
 	}
 
-	for _, v := range header {
-		e.headers = append(e.headers, NewHeader(v.Key, v.Value))
+	for _, v := range tune.Items() {
+		switch i := v.(type) {
+		case abcfile.Score:
+			e.lines = append(e.lines, NewLine(string(i), abc.NewBeat(1, 4)))
+		case abcfile.Header:
+			e.lines = append(e.lines, NewHeader(i.Key, i.Value))
+		}
 	}
-
-	for _, l := range lines {
-		e.lines = append(e.lines, NewLine(l, abc.NewBeat(1, 4)))
-	}
-	if len(e.lines) > 0 {
-		e.lines[0].Focus()
-	}
+	e.FocusFirstScore()
 	return e
 }
 func NewEditor(id string) *Editor {
 	e := &Editor{
-		headers: []*Header{
-			NewHeader("X", id),
-			NewHeader("T", ""),
-			NewHeader("M", "4/4"),
-			NewHeader("L", "1/4"),
-			NewHeader("K", "C"),
-		},
 		errorMsg: &ErrorMessage{},
 	}
 
+	e.lines = append(e.lines, NewHeader("X", id))
+	e.lines = append(e.lines, NewHeader("T", ""))
 	e.lines = append(e.lines, NewLine("", abc.NewBeat(1, 4)))
-	e.lines[e.currentLine].Focus()
+	e.FocusFirstScore()
 	return e
 }
 
@@ -57,30 +49,22 @@ func (e *Editor) Init() tea.Cmd {
 	return nil
 }
 
-func (e *Editor) UpdateHeaderMode(msg tea.Msg) (*Editor, tea.Cmd) {
+func (e *Editor) UpdateHeaderMode(current tea.Model, msg tea.Msg) (*Editor, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
 		case "enter":
-			for _, h := range e.headers {
-				if h.Key == e.selectedHeader {
-					h.Text.Blur()
-				}
-			}
-			e.selectedHeader = ""
+			current.(*Header).Text.Blur()
+			e.FocusFirstScore()
 			return e, nil
 		}
 	}
-
-	for _, h := range e.headers {
-		if h.Key == e.selectedHeader {
-			h.Update(msg)
-		}
-	}
-	return e, nil
+	var cmd tea.Cmd
+	e.lines[e.currentLine], cmd = current.Update(msg)
+	return e, cmd
 }
 
-func (e *Editor) UpdateEditorMode(msg tea.Msg) (*Editor, tea.Cmd) {
+func (e *Editor) UpdateEditorMode(current *Line, msg tea.Msg) (*Editor, tea.Cmd) {
 	switch msg := msg.(type) {
 
 	case tea.KeyMsg:
@@ -95,10 +79,30 @@ func (e *Editor) UpdateEditorMode(msg tea.Msg) (*Editor, tea.Cmd) {
 				return nil
 			}
 		case "ctrl+o":
-			e.lines = append(e.lines, NewLine(e.lines[e.currentLine].validContent, abc.NewBeat(1, 4)))
+			e.lines = append(e.lines, NewLine(current.validContent, abc.NewBeat(1, 4)))
 			e.currentLine = len(e.lines) - 1
 			e.setFocus()
 			return e, nil
+
+		case "enter":
+			e.lines = append(e.lines, NewLine("", abc.NewBeat(1, 4)))
+			e.currentLine++
+			e.setFocus()
+			return e, nil
+
+		}
+	}
+	var cmd tea.Cmd
+	e.lines[e.currentLine], cmd = current.Update(msg)
+	return e, cmd
+
+}
+
+func (e *Editor) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	e.errorMsg, _ = e.errorMsg.Update(msg)
+	switch msg := msg.(type) {
+	case tea.KeyMsg:
+		switch msg.String() {
 		case "up":
 			if e.currentLine > 0 {
 				e.currentLine--
@@ -110,56 +114,35 @@ func (e *Editor) UpdateEditorMode(msg tea.Msg) (*Editor, tea.Cmd) {
 			e.currentLine = (e.currentLine + 1) % len(e.lines)
 			e.setFocus()
 			return e, nil
-
-		case "enter":
-
-			e.lines = append(e.lines, NewLine("", abc.NewBeat(1, 4)))
-			e.currentLine++
-			e.setFocus()
-			return e, nil
-
-		}
-
-		// edit one of the headers
-		for _, h := range e.headers {
-			if h.Key == strings.ToUpper(msg.String()) {
-				e.selectedHeader = strings.ToUpper(msg.String())
-				h.Text.Focus()
-			} else {
-				h.Text.Blur()
-			}
-		}
-
-	}
-
-	// forward update to the right line editor
-	var cmds []tea.Cmd
-	for i, _ := range e.lines {
-		if i == e.currentLine {
-			l, c := e.lines[i].Update(msg)
-			e.lines[i] = l.(*Line)
-			cmds = append(cmds, c)
 		}
 	}
-	return e, tea.Batch(cmds...)
-}
-
-func (e *Editor) Update(msg tea.Msg) (*Editor, tea.Cmd) {
-	e.errorMsg, _ = e.errorMsg.Update(msg)
-	if e.selectedHeader == "" {
-		return e.UpdateEditorMode(msg)
-	} else {
-		return e.UpdateHeaderMode(msg)
+	model := e.lines[e.currentLine]
+	switch i := model.(type) {
+	case *Line:
+		return e.UpdateEditorMode(i, msg)
+	case *Header:
+		return e.UpdateHeaderMode(i, msg)
 	}
+	return e, nil
 }
 
 func (e *Editor) setFocus() {
-	for ix, l := range e.lines {
-		if ix == e.currentLine {
-			l.Focus()
-		} else {
-			l.Blur()
+	for ix, i := range e.lines {
+		switch l := i.(type) {
+		case *Line:
+			if ix == e.currentLine {
+				l.Focus()
+			} else {
+				l.Blur()
+			}
+		case *Header:
+			if ix == e.currentLine {
+				l.Text.Focus()
+			} else {
+				l.Text.Blur()
+			}
 		}
+
 	}
 }
 
@@ -192,22 +175,31 @@ func (e *Editor) Play() error {
 
 func (e *Editor) GetABC() string {
 	s := ""
-	for _, h := range e.headers {
-		s += h.Key + ":" + h.Text.Value() + "\n"
-	}
-	for _, l := range e.lines {
-		s += l.content.Value() + "\n"
+	for _, h := range e.lines {
+		switch i := h.(type) {
+		case *Line:
+			s += i.content.Value() + "\n"
+		case *Header:
+			s += i.Key + ":" + i.Text.Value() + "\n"
+		}
 	}
 	return s
 }
 func (e *Editor) View() string {
 	s := ""
-	for _, h := range e.headers {
-		s += h.View()
-	}
-	for i, _ := range e.lines {
-		s += e.lines[i].View() + "\n"
+	for _, h := range e.lines {
+		s += h.View() + "\n"
 	}
 	s += e.errorMsg.View()
 	return s
+}
+
+func (e *Editor) FocusFirstScore() {
+	for ix, l := range e.lines {
+		if _, ok := l.(*Line); ok {
+			e.currentLine = ix
+			break
+		}
+	}
+	e.setFocus()
 }

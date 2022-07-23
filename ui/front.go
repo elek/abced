@@ -72,8 +72,8 @@ func (f *Front) Update(msg tea.Msg) (model tea.Model, cmd tea.Cmd) {
 			if f.editor == nil {
 				item := f.list.SelectedItem().(abcFile)
 				s := f.abc.GetScore(item.ID)
-				h, l := s.HeadersAndLines()
-				f.editor = NewEditorFromData(h, l)
+				f.editor = NewEditorFromTune(s)
+				return f, nil
 			}
 		case "ctrl+n":
 			if f.editor == nil {
@@ -119,7 +119,9 @@ func (f *Front) Update(msg tea.Msg) (model tea.Model, cmd tea.Cmd) {
 	}
 	model = f
 	if f.editor != nil {
-		f.editor, cmd = f.editor.Update(msg)
+		var updated tea.Model
+		updated, cmd = f.editor.Update(msg)
+		f.editor = updated.(*Editor)
 	} else {
 		f.list, cmd = f.list.Update(msg)
 	}

@@ -2,6 +2,7 @@ package parser
 
 import (
 	"fmt"
+	"github.com/elek/abced/abcfile"
 	"github.com/elek/abced/ast"
 	abc "github.com/elek/abced/types"
 	"strings"
@@ -16,7 +17,8 @@ func ParseAST(line *ast.Line, unit abc.Beat, key string) (*abc.Score, error) {
 	return p.score, p.err
 }
 
-func ParseLine(line string, unit abc.Beat, key string) (*abc.Score, error) {
+func ParseLine(score abcfile.Score, unit abc.Beat, key string) (*abc.Score, error) {
+	line := string(score)
 	if len(strings.TrimSpace(line)) == 0 {
 		return abc.NewScore(), nil
 	}

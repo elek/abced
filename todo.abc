@@ -1,33 +1,33 @@
-%abc:::::::::::::
+%abc:::::::::::::::::::::::
 I:abc-charset utf-8
-%%writefields NL:::::::::::::
+%%writefields NL:::::::::::::::::::::::
 
-T:xNincsen pénzem van erszényem...xxx[
+T:Nincsen pénzem van erszényem...
 L:1/4
-K:F
 S:gyergyó
 X:1
+K:F
 g/g/g/f/ d/f/f/d/ | c/c/c/G/ d2  |
-w: Nin-csen pén-zem van er-szé-nyem jó bort i-hat-nák
+w:Nin-csen pén-zem van er-szé-nyem jó bort i-hat-nák
 g/g/g/f/ d/f/f/d/ | c/c/c/B/ G2  |
-w: Nin-csen lo-vam van kan-tá-rom lo-va-gol-hat-nák
+w:Nin-csen lo-vam van kan-tá-rom lo-va-gol-hat-nák
 B/c/c/B/ d/d/d/B/ | B/c/c/B/ d2 |
-w: Vagy-on e-kém nin-csen föl-dem jól be-szánt-hat-nám
+w:Vagy-on e-kém nin-csen föl-dem jól be-szánt-hat-nám
 B/c/c/B/ d/d/d/B/ | B/c/c/B/ G2 |
-w: Vagy-on e-rőm, nincs sze-re-tőm, há-za-sod-hat-nám
+w:Vagy-on e-rőm, nincs sze-re-tőm, há-za-sod-hat-nám
 B/cB/ d2 | B/cB/ d2 |
-w:  A-jajj-jaj jaj A-jajj-jaj jaj
+w:A-jajj-jaj jaj A-jajj-jaj jaj
 B/cB/ G2 |
-w: A-jajj-jaj jaj
-W: Ha nálunk jő guzsalyasba csendesen járjon
-W: A mi titkos záros ajtónk meg ne roppanjon
-W: Édesanyám olyan betyár ebren aluvó
-W: Amit mi most beszélünk meghallgattató
+w:A-jajj-jaj jaj
+W:Ha nálunk jő guzsalyasba csendesen járjon
+W:A mi titkos záros ajtónk meg ne roppanjon
+W:Édesanyám olyan betyár ebren aluvó
+W:Amit mi most beszélünk meghallgattató
 W:
-W: Titkos beszéd nem esik meg szerelem nélkül
-W: A szerelem nem esik meg páros csók nélkül
-W: Adsza kezed jobb kezembe, fordojunk egyet
-W: Menjünk ki a gyümölcsösbe ott szedjünk meggyet
+W:Titkos beszéd nem esik meg szerelem nélkül
+W:A szerelem nem esik meg páros csók nélkül
+W:Adsza kezed jobb kezembe, fordojunk egyet
+W:Menjünk ki a gyümölcsösbe ott szedjünk meggyet
 
 X: 2
 T: Szilágysági dallam
@@ -354,5 +354,5 @@ T:
 M:4/4
 L:1/4
 K:C
-a a a a | 
+a a a a |
 

@@ -1,6 +1,9 @@
 package abcfile
 
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
 
 type AbcFile struct {
 	Headers []*Header
@@ -8,6 +11,8 @@ type AbcFile struct {
 }
 
 type Headers []Header
+
+type Score string
 
 func (f *AbcFile) AddScore(abc string) {
 	f.Tunes = append(f.Tunes, NewScore(abc))
@@ -41,27 +46,28 @@ func (s *Tune) SetValue(content string) {
 	s.Raw = content
 }
 
-func (s *Tune) HeadersAndLines() (Headers, []string) {
-	var headers []Header
-	var lines []string
-
+func (s *Tune) Items() []interface{} {
+	var res []interface{}
+	headerPattern := regexp.MustCompile("([a-zA-Z]):\\s*(.+)")
 	for _, l := range strings.Split(s.Raw, "\n") {
 		l = strings.TrimSpace(l)
 		if l == "" {
 			continue
 		}
 
-		parts := strings.SplitN(l, ":", 2)
-		if len(lines) > 0 || len(parts) == 1 {
-			lines = append(lines, l)
+		parts := headerPattern.FindStringSubmatch(l)
+
+		if len(parts) == 3 {
+			res = append(res, Header{
+				Key:   parts[1],
+				Value: parts[2],
+			})
 			continue
+		} else {
+			res = append(res, Score(l))
 		}
-		headers = append(headers, Header{
-			Key:   strings.TrimSpace(parts[0]),
-			Value: strings.TrimSpace(parts[1]),
-		})
 	}
-	return headers, lines
+	return res
 }
 
 func (h Headers) Get(key string) string {
@@ -78,6 +84,18 @@ func (s *Tune) ID() string {
 
 func (s *Tune) Title() string {
 	return extract("T", s.Raw)
+}
+
+func (s *Tune) HeadersAndScores() (h Headers, sc []Score) {
+	for _, i := range s.Items() {
+		switch t := i.(type) {
+		case Score:
+			sc = append(sc, t)
+		case Header:
+			h = append(h, t)
+		}
+	}
+	return h, sc
 }
 
 func extract(key string, lines string) string {

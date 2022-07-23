@@ -11,7 +11,7 @@ import (
 func ParseTune(tune abcfile.Tune) (*abc.Tune, error) {
 	t := abc.NewTune()
 
-	headers, lines := tune.HeadersAndLines()
+	headers, lines := tune.HeadersAndScores()
 	key := headers.Get("K")
 	u := strings.Split(strings.TrimSpace(headers.Get("M")), "/")
 	if len(u) < 2 {

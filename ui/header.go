@@ -31,7 +31,7 @@ func (h *Header) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (h *Header) View() string {
-	return h.Key + h.Text.View() + "\n"
+	return h.Key + h.Text.View()
 }
 
 var _ tea.Model = &Header{}
