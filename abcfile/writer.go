@@ -13,7 +13,7 @@ func WriteFile(filename string, file *AbcFile) error {
 	if s != "" {
 		s += "\n"
 	}
-	for _, c := range file.Scores {
+	for _, c := range file.Tunes {
 		s += c.Raw + "\n"
 	}
 	return ioutil.WriteFile(filename, []byte(s), 0644)

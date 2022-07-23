@@ -20,6 +20,6 @@ abc d
 `
 	abc, err := Read(a)
 	require.NoError(t, err)
-	require.Equal(t, 2, len(abc.Scores))
+	require.Equal(t, 2, len(abc.Tunes))
 	require.Equal(t, 1, len(abc.Headers))
 }

@@ -4,15 +4,17 @@ import "strings"
 
 type AbcFile struct {
 	Headers []*Header
-	Scores  []*Score
+	Tunes   []*Tune
 }
+
+type Headers []Header
 
 func (f *AbcFile) AddScore(abc string) {
-	f.Scores = append(f.Scores, NewScore(abc))
+	f.Tunes = append(f.Tunes, NewScore(abc))
 }
 
-func (f *AbcFile) GetScore(ID string) *Score {
-	for _, s := range f.Scores {
+func (f *AbcFile) GetScore(ID string) *Tune {
+	for _, s := range f.Tunes {
 		if s.ID() == ID {
 			return s
 		}
@@ -25,21 +27,21 @@ type Header struct {
 	Value string
 }
 
-type Score struct {
+type Tune struct {
 	Raw string
 }
 
-func NewScore(c string) *Score {
-	return &Score{
+func NewScore(c string) *Tune {
+	return &Tune{
 		Raw: c,
 	}
 }
 
-func (s *Score) SetValue(content string) {
+func (s *Tune) SetValue(content string) {
 	s.Raw = content
 }
 
-func (s *Score) HeadersAndLines() ([]Header, []string) {
+func (s *Tune) HeadersAndLines() (Headers, []string) {
 	var headers []Header
 	var lines []string
 
@@ -62,11 +64,19 @@ func (s *Score) HeadersAndLines() ([]Header, []string) {
 	return headers, lines
 }
 
-func (s *Score) ID() string {
+func (h Headers) Get(key string) string {
+	for _, k := range h {
+		if k.Key == key {
+			return k.Value
+		}
+	}
+	return ""
+}
+func (s *Tune) ID() string {
 	return extract("X", s.Raw)
 }
 
-func (s *Score) Title() string {
+func (s *Tune) Title() string {
 	return extract("T", s.Raw)
 }
 

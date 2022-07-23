@@ -29,7 +29,7 @@ func NewFront(filename string, in *abcfile.AbcFile) *Front {
 
 func (f *Front) recreateList() {
 	k := make([]list.Item, 0)
-	for _, s := range f.abc.Scores {
+	for _, s := range f.abc.Tunes {
 		k = append(k, abcFile{
 			ID:   s.ID(),
 			Name: s.Title(),
@@ -78,7 +78,7 @@ func (f *Front) Update(msg tea.Msg) (model tea.Model, cmd tea.Cmd) {
 		case "ctrl+n":
 			if f.editor == nil {
 				maxID := 0
-				for _, s := range f.abc.Scores {
+				for _, s := range f.abc.Tunes {
 					i, err := strconv.Atoi(s.ID())
 					if err == nil {
 						if i > maxID {
