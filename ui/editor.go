@@ -3,7 +3,8 @@ package ui
 import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/elek/abced/abcfile"
-	abc "github.com/elek/abced/types"
+	abc "github.com/elek/abced/music"
+	"strings"
 )
 
 type Editor struct {
@@ -71,7 +72,15 @@ func (e *Editor) UpdateEditorMode(current *Line, msg tea.Msg) (*Editor, tea.Cmd)
 		switch msg.String() {
 		case "p":
 			return e, func() tea.Msg {
-				err := Play(e)
+				err := PlayExternal(e)
+				if err != nil {
+					return ErrorMsg(err)
+				}
+				return nil
+			}
+		case "ctrl+p":
+			return e, func() tea.Msg {
+				err := PlayInternal(e)
 				if err != nil {
 					return ErrorMsg(err)
 				}
@@ -87,7 +96,15 @@ func (e *Editor) UpdateEditorMode(current *Line, msg tea.Msg) (*Editor, tea.Cmd)
 			}
 
 		case "ctrl+o":
-			e.lines = append(e.lines, NewLine(current.validContent, abc.NewBeat(1, 4)))
+			for ix, line := range e.lines {
+				if strings.TrimSpace(line.(*Line).content.Value()) == "" {
+					line.(*Line).content.SetValue(current.content.Value())
+					e.currentLine = ix
+					e.setFocus()
+					return e, nil
+				}
+			}
+			e.lines = append(e.lines, NewLine(current.content.Value(), abc.NewBeat(1, 4)))
 			e.currentLine = len(e.lines) - 1
 			e.setFocus()
 			return e, nil

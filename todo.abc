@@ -1,6 +1,6 @@
-%abc:::::::::::::::::::::::::::::::::
+%abc::::::::::::::::::::::::::::::::::::
 I:abc-charset utf-8
-%%writefields NL:::::::::::::::::::::::::::::::::
+%%writefields NL::::::::::::::::::::::::::::::::::::
 
 T:Nincsen pénzem van erszényem...
 L:1/4
@@ -29,12 +29,12 @@ W:A szerelem nem esik meg páros csók nélkül
 W:Adsza kezed jobb kezembe, fordojunk egyet
 W:Menjünk ki a gyümölcsösbe ott szedjünk meggyet
 
-X: 2
-T: Szilágysági dallam
-O: Dűvő, Szilágysági
-%N: https://library.hungaricana.hu/hu/view/ZTI_AP_05241-05260/
-M: 2/4
-L: 1/16
+X:2
+T:Szilágysági dallam
+O:Dűvő, Szilágysági
+N:https://library.hungaricana.hu/hu/view/ZTI_AP_05241-05260/
+M:2/4
+L:1/16
 Q:1/4=129
 K:F
 V:1
@@ -94,16 +94,16 @@ w: Meg se hal-tam már el va-gyok te-met-ve
 w:
 
 X:5
-T: Jobbról-balra sirítem
-O: Gyimesközéplok-Hidegség (Csík), Tímár Jánosné - Csorba Anna (63), 1968.07
+T:Jobbról-balra sirítem
+O:Gyimesközéplok-Hidegség (Csík), Tímár Jánosné - Csorba Anna (63), 1968.07
 M:4/4
 L:1/4
-Q: 1/4=108
+Q:1/4=108
 K:C
 (3:2:2 G/D G G B/<B/d/d/ | d<c B z |
 G/G/B/B/ G/<G/d/d/ | A<A A z |
 G/<G/ (3:2:2 B/B B/G/ B | d/<d/ (3:2:2 A/A (3:2:2 B/B | G/z/ |
-e/e/e/<d/ e/<d/c/c/ | A<G G z |
+e/e/e/<d/ e/<d/c/c/ | A<G G z |c
 
 X:6
 T:Hortobágyi kocsmárosné
@@ -199,7 +199,7 @@ G>G A<G | ^F>G A<B | c2 B2 | A2 z2 |
 B>B d<d | e>d c<B | c2 B2 | A2 z2 |
 B>B d<d | c>B A<G | d>d d<c | B2 A2 | G2 z2 |
 
-%%https://zti.hungaricana.hu/en/audio/4932/?t=00%3A19%3A14#record-14719
+s://zti.hungaricana.hu/en/audio/4932/?t=00%3A19%3A14#record-14719
 
 X:14
 T: A Savanyú tizenhat szél gatyája

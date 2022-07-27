@@ -1,12 +1,15 @@
 package ast
 
-import "github.com/antlr/antlr4/runtime/Go/antlr"
+import (
+	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/zeebo/errs/v2"
+)
 
 type errorListener struct {
 	*antlr.DefaultErrorListener
-	err bool
+	err error
 }
 
 func (d *errorListener) SyntaxError(recognizer antlr.Recognizer, offendingSymbol interface{}, line, column int, msg string, e antlr.RecognitionException) {
-	d.err = true
+	d.err = errs.Errorf("%s", msg)
 }

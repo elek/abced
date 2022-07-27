@@ -1,9 +1,9 @@
 package ast
 
 import (
-	"fmt"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/elek/abced/grammar"
+	"github.com/zeebo/errs/v2"
 )
 
 func BuildAST(line string) (*Line, error) {
@@ -24,8 +24,8 @@ func BuildAST(line string) (*Line, error) {
 		},
 	}
 	antlr.ParseTreeWalkerDefault.Walk(&l, p.Line())
-	if e.err {
-		return l.line, fmt.Errorf("eror on parsing the abc line: " + line)
+	if e.err != nil {
+		return l.line, errs.Errorf("error on parsing the abc line: %s %v", line, e.err)
 	}
 	return l.line, nil
 

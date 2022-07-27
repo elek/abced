@@ -1,6 +1,9 @@
 package ui
 
 import (
+	"github.com/elek/abced/abcfile"
+	"github.com/elek/abced/midi"
+	"github.com/elek/abced/parser"
 	"github.com/zeebo/errs/v2"
 	"io/ioutil"
 	"log"
@@ -32,7 +35,7 @@ func Show(e *Editor) error {
 	return nil
 }
 
-func Play(e *Editor) error {
+func PlayExternal(e *Editor) error {
 	c := e.GetABC()
 	firstLine := strings.Split(c, "\n")[0]
 	id := strings.TrimSpace(strings.Split(firstLine, ":")[1])
@@ -57,4 +60,17 @@ func Play(e *Editor) error {
 		return err
 	}
 	return nil
+}
+
+func PlayInternal(e *Editor) error {
+	c := e.GetABC()
+	t := abcfile.Tune{
+		Raw: c,
+	}
+	parsed, err := parser.ParseTune(t)
+	if err != nil {
+		return err
+	}
+	err = midi.PlayTune(parsed)
+	return err
 }

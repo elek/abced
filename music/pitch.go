@@ -1,14 +1,9 @@
-package abc
+package music
 
 import "fmt"
 
 type Pitch int
 
-var cadences = []string{
-	"I", "♯I", "II", "♯II", "III", "IV", "♯IV", "V", "♯V", "VI", "VII", "♯VII",
-	"1", "♭2", "2", "♭3", "3", "4", "♯4", "5", "♭6", "6", "7", "♯7",
-	"8", "♭9", "9", "♭10", "10", "11", "♯11", "12", "♭13",
-}
 var pitches = map[rune]Pitch{
 	'C': Pitch(0),
 	'D': Pitch(2),

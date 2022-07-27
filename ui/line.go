@@ -5,19 +5,19 @@ import (
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/elek/abced/ast"
+	"github.com/elek/abced/music"
 	"github.com/elek/abced/parser"
-	abc "github.com/elek/abced/types"
 	"strings"
 )
 
 type Line struct {
 	content       textinput.Model
 	validContent  string
-	defaultLength abc.Beat
-	lastPitch     *abc.Pitch
+	defaultLength music.Beat
+	lastPitch     *music.Pitch
 }
 
-func NewLine(value string, defaultLength abc.Beat) *Line {
+func NewLine(value string, defaultLength music.Beat) *Line {
 	ti := textinput.New()
 	ti.Prompt = ""
 	ti.SetValue(value)
@@ -35,8 +35,8 @@ func (l *Line) GuessOctave(orig string) string {
 	if l.lastPitch != nil {
 
 		//up means one octave up --> lower case
-		up := abc.NewPitchFromString(strings.ToLower(orig))
-		low := abc.NewPitchFromString(strings.ToUpper(orig))
+		up := music.NewPitchFromString(strings.ToLower(orig))
+		low := music.NewPitchFromString(strings.ToUpper(orig))
 
 		if l.lastPitch.Distance(up) < l.lastPitch.Distance(low) {
 			orig = strings.ToLower(orig)
@@ -86,8 +86,8 @@ func (l *Line) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			l.content, cmd = l.content.Update(msg)
 			l.ReIndex()
 			return l, cmd
-		case "/", "1", "2", "3", "<", ">", ".", ",", " ", "z", "|", "_", "=", "^", "(", ")", ":":
-			if msg.String() == " " && strings.HasSuffix(l.content.Value(), " ") {
+		case "/", "1", "2", "3", "4", "5", "6", "7", "8", "9", "<", ">", ".", ",", " ", "z", "|", "_", "=", "^", "(", ")", ":":
+			if msg.String() == " " && l.content.Cursor() > 0 && l.content.Value()[l.content.Cursor()-1] == ' ' {
 				return l, nil
 			}
 			l.content, cmd = l.content.Update(msg)
@@ -146,12 +146,13 @@ func (l *Line) addBar() {
 		nl.Nodes = append([]ast.Node{parsed.Nodes[i]}, nl.Nodes...)
 	}
 
-	lb, err := parser.ParseAST(&nl, abc.NewBeat(1, 4), "C")
+	lb, err := parser.ParseAST(&nl, music.NewBeat(1, 4), "C")
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	if lb.Length() == abc.NewBeat(4, 4).Simplify() {
+	if lb.Length() == music.NewBeat(4, 4).Simplify() {
+		l.content.Focus()
 		l.content, _ = l.content.Update(tea.KeyMsg{
 			Type:  tea.KeyRunes,
 			Runes: []rune{'|', ' '},
@@ -170,13 +171,13 @@ func (l *Line) Blur() {
 var _ tea.Model = &Line{}
 
 type LastNote struct {
-	LastPitch *abc.Pitch
+	LastPitch *music.Pitch
 }
 
 func (l *LastNote) Visit(node ast.Node) (w ast.Visitor) {
 	switch n := node.(type) {
 	case ast.Note:
-		p := abc.NewPitchFromString(n.Letter.Pitch)
+		p := music.NewPitchFromString(n.Letter.Pitch)
 		l.LastPitch = &p
 	}
 	return l

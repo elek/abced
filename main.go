@@ -29,14 +29,25 @@ func main() {
 
 	{
 		c.AddCommand(&cobra.Command{
+			Use: "count",
+			RunE: func(cmd *cobra.Command, args []string) error {
+				files, err := fileList(args)
+				if err != nil {
+					return errs.Wrap(err)
+				}
+				return research.Count(files)
+			},
+		})
+	}
+	{
+		c.AddCommand(&cobra.Command{
 			Use: "list",
 			RunE: func(cmd *cobra.Command, args []string) error {
 				files, err := fileList(args)
 				if err != nil {
 					return errs.Wrap(err)
 				}
-				research.List(files)
-				return nil
+				return research.List(files)
 			},
 		})
 	}

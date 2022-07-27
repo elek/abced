@@ -28,12 +28,18 @@ func TestASTSimple(t *testing.T) {
 		{
 			line: "f<f e/d/c/d/ | B<G B d",
 		},
+		{
+			line: "_a =a ^a",
+		},
+		{
+			line: "(3:2:2 a (3 a (3::2 a",
+		},
 	}
 
 	for _, ts := range tests {
 		t.Run(strings.ReplaceAll(ts.line, "|", ""), func(t *testing.T) {
 			ast, err := BuildAST(ts.line)
-			Walk(TreePrinter{}, ast)
+			//Walk(TreePrinter{}, ast)
 			require.NoError(t, err)
 			require.Equal(t, ts.line, Render(ast))
 		})

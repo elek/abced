@@ -15,7 +15,7 @@ type Headers []Header
 type Score string
 
 func (f *AbcFile) AddScore(abc string) {
-	f.Tunes = append(f.Tunes, NewScore(abc))
+	f.Tunes = append(f.Tunes, NewTune(abc))
 }
 
 func (f *AbcFile) GetScore(ID string) *Tune {
@@ -36,7 +36,7 @@ type Tune struct {
 	Raw string
 }
 
-func NewScore(c string) *Tune {
+func NewTune(c string) *Tune {
 	return &Tune{
 		Raw: c,
 	}
@@ -48,7 +48,7 @@ func (s *Tune) SetValue(content string) {
 
 func (s *Tune) Items() []interface{} {
 	var res []interface{}
-	headerPattern := regexp.MustCompile("([a-zA-Z]):\\s*(.+)")
+	headerPattern := regexp.MustCompile("([a-zA-Z]):\\s*(.*)")
 	for _, l := range strings.Split(s.Raw, "\n") {
 		l = strings.TrimSpace(l)
 		if l == "" {

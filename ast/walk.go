@@ -16,6 +16,7 @@ func Walk(v Visitor, node Node) {
 			Walk(v, c)
 		}
 	case Note:
+		Walk(v, n.Accidental)
 		Walk(v, n.Letter)
 		Walk(v, n.Length)
 	case *Length:
@@ -34,10 +35,12 @@ func Walk(v Visitor, node Node) {
 		Walk(v, n.Symbol)
 		Walk(v, n.Second)
 	case *Number:
+	case Accidental:
 	case *Divider:
 	case Letter:
 	case Symbol:
 	case Bar:
+	case Triplet:
 	default:
 		panic(fmt.Sprintf("Unknown node type %T", n))
 	}

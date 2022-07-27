@@ -1,6 +1,8 @@
 package parser
 
-import abc "github.com/elek/abced/types"
+import (
+	abc "github.com/elek/abced/music"
+)
 
 var keyTransformation = map[string]map[abc.Pitch]abc.Pitch{
 	"D": {

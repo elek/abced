@@ -1,7 +1,7 @@
 package ui
 
 import (
-	abc "github.com/elek/abced/types"
+	"github.com/elek/abced/music"
 	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
@@ -36,11 +36,10 @@ func TestAddBar(t *testing.T) {
 
 	for _, ts := range tests {
 		t.Run(strings.ReplaceAll(ts.orig, "|", "X"), func(t *testing.T) {
-			l := NewLine(abc.NewScore(), abc.NewBeat(1, 4))
-			l.content = ts.orig
+			l := NewLine(ts.orig, music.NewBeat(1, 4))
 			l.ReIndex()
 			l.addBar()
-			require.Equal(t, ts.result, l.content)
+			require.Equal(t, ts.result, l.content.Value())
 		})
 
 	}

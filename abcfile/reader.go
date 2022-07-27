@@ -18,7 +18,7 @@ func Read(content string) (AbcFile, error) {
 	a := AbcFile{}
 	header := true
 	current := ""
-	for _, line := range strings.Split(string(content), "\n") {
+	for ix, line := range strings.Split(content, "\n") {
 		line = strings.TrimSpace(line)
 		if header {
 			if line == "" {
@@ -32,6 +32,9 @@ func Read(content string) (AbcFile, error) {
 				continue
 			}
 			parts := strings.SplitN(line, ":", 2)
+			if len(parts) != 2 {
+				return AbcFile{}, errs.Errorf("L:%d wrong K:V format: %s", ix, line)
+			}
 			a.Headers = append(a.Headers, &Header{
 				Key:   strings.TrimSpace(parts[0]),
 				Value: strings.TrimSpace(parts[1]),

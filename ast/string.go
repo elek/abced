@@ -38,6 +38,16 @@ func (r *Renderer) Visit(node Node) (w Visitor) {
 	case Note:
 	case *Length:
 	case Broken:
+	case Accidental:
+		switch n.Type {
+		case Flat:
+			r.print("_")
+		case Natural:
+			r.print("=")
+		case Sharp:
+			r.print("^")
+		}
+
 	case Symbol:
 		r.print(n.Symbol)
 	case Letter:
@@ -50,6 +60,19 @@ func (r *Renderer) Visit(node Node) (w Visitor) {
 		}
 	case Bar:
 		r.print(n.Symbol)
+	case Triplet:
+		out := fmt.Sprintf("(%d", n.P)
+		if n.Q != 0 || n.R != 0 {
+			if n.Q != 0 {
+				out += fmt.Sprintf(":%d", n.Q)
+			} else {
+				out += ":"
+			}
+			if n.R > 0 {
+				out += fmt.Sprintf(":%d", n.R)
+			}
+		}
+		r.print(out)
 	default:
 		panic(fmt.Sprintf("unsupported node %T", node))
 	}

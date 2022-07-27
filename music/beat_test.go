@@ -1,4 +1,4 @@
-package abc
+package music
 
 import (
 	"github.com/stretchr/testify/require"

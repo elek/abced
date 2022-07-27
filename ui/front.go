@@ -5,6 +5,7 @@ import (
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/elek/abced/abcfile"
+	"sort"
 	"strconv"
 )
 
@@ -35,6 +36,11 @@ func (f *Front) recreateList() {
 			Name: s.Title(),
 		})
 	}
+	sort.Slice(k, func(i, j int) bool {
+		id1, _ := strconv.Atoi(k[i].(abcFile).ID)
+		id2, _ := strconv.Atoi(k[j].(abcFile).ID)
+		return id1 < id2
+	})
 	f.list = list.New(k, list.NewDefaultDelegate(), 30, 20)
 }
 
@@ -98,7 +104,7 @@ func (f *Front) Update(msg tea.Msg) (model tea.Model, cmd tea.Cmd) {
 		case "q", "ctrl+q":
 			if f.editor != nil {
 				content := f.editor.GetABC()
-				score := abcfile.NewScore(content)
+				score := abcfile.NewTune(content)
 				id := score.ID()
 				existing := f.abc.GetScore(id)
 				if existing != nil {

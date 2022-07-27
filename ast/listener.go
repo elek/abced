@@ -4,6 +4,7 @@ import (
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/elek/abced/grammar"
 	"strconv"
+	"strings"
 )
 
 type abcListener struct {
@@ -15,6 +16,35 @@ type abcListener struct {
 func (s *abcListener) EnterDe(ctx *grammar.DeContext) {
 
 }
+
+func (s *abcListener) ExitTriplet(ctx *grammar.TripletContext) {
+
+	t := Triplet{
+		Positioned: Positioned{
+			Position: Pos(ctx.GetSourceInterval().Start),
+		},
+	}
+
+	text := strings.TrimPrefix(ctx.GetText(), "(")
+	parts := strings.Split(text, ":")
+
+	if len(parts) > 0 {
+		v, _ := strconv.Atoi(parts[0])
+		t.P = uint8(v)
+	}
+
+	if len(parts) > 1 && parts[1] != "" {
+		v, _ := strconv.Atoi(parts[1])
+		t.Q = uint8(v)
+	}
+
+	if len(parts) > 2 && parts[2] != "" {
+		v, _ := strconv.Atoi(parts[2])
+		t.R = uint8(v)
+	}
+	s.line.Nodes = append(s.line.Nodes, t)
+}
+
 func (s *abcListener) ExitDe(ctx *grammar.DeContext) {
 	if ctx.GT() != nil || ctx.LT() != nil {
 		if len(s.line.Nodes) < 2 {
@@ -96,6 +126,24 @@ func (s *abcListener) ExitNote(ctx *grammar.NoteContext) {
 		}
 	}
 
+	if ctx.NATURAL() != nil {
+		n.Accidental = Accidental{
+			Type:       Natural,
+			Positioned: position(ctx.NATURAL()),
+		}
+	}
+	if ctx.FLAT() != nil {
+		n.Accidental = Accidental{
+			Type:       Flat,
+			Positioned: position(ctx.FLAT()),
+		}
+	}
+	if ctx.SHARP() != nil {
+		n.Accidental = Accidental{
+			Type:       Sharp,
+			Positioned: position(ctx.SHARP()),
+		}
+	}
 	s.line.Nodes = append(s.line.Nodes, n)
 }
 

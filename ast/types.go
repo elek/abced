@@ -1,6 +1,9 @@
 package ast
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/elek/abced/music"
+)
 
 type Pos int
 
@@ -19,6 +22,24 @@ func (p Positioned) Pos() Pos {
 type Line struct {
 	Positioned
 	Nodes []Node
+}
+
+type Triplet struct {
+	Positioned
+	P uint8
+	Q uint8
+	R uint8
+}
+
+func (t Triplet) Modifier() music.Beat {
+	return music.NewBeat(int(t.P), int(t.Q))
+}
+
+func (t Triplet) Length() int {
+	if t.R == 0 {
+		return int(t.P)
+	}
+	return int(t.R)
 }
 
 type Divider struct {
@@ -55,14 +76,25 @@ type Letter struct {
 	Pitch string
 }
 
-type LetterModifier struct {
+type Accidental struct {
+	Positioned
+	Type AccidentalType
 }
+
+type AccidentalType uint8
+
+const (
+	Nothing AccidentalType = iota
+	Flat
+	Natural
+	Sharp
+)
 
 type Note struct {
 	Positioned
-	Letter   Letter
-	Modifier *LetterModifier
-	Length   *Length
+	Letter     Letter
+	Accidental Accidental
+	Length     *Length
 }
 
 type Rest struct {

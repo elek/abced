@@ -2,36 +2,36 @@ package research
 
 import (
 	"github.com/elek/abced/abcfile"
-	"github.com/elek/abced/parser"
 	"github.com/olekukonko/tablewriter"
 	"github.com/zeebo/errs/v2"
 	"os"
+	"path/filepath"
+	"strconv"
 )
 
-func List(files []string) error {
+func Count(files []string) error {
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"#", "Title", "V"})
+	table.SetHeader([]string{"File", "#"})
 	table.SetAutoWrapText(false)
+	s := 0
 	for _, path := range files {
 		abc, err := abcfile.ReadFile(path)
 		if err != nil {
 			return errs.Errorf("Couldn't read %s: %++v", path, err)
 		}
 
-		for _, tune := range abc.Tunes {
+		table.Append([]string{
+			filepath.Base(path),
+			strconv.Itoa(len(abc.Tunes)),
+		})
+		s += len(abc.Tunes)
 
-			e := ""
-			_, err := parser.ParseTune(*tune)
-			if err != nil {
-				e = err.Error()
-			}
-			table.Append([]string{
-				tune.ID(),
-				tune.Title(),
-				e,
-			})
-		}
 	}
+	table.Append([]string{
+		"SUM",
+		strconv.Itoa(s),
+	})
+
 	table.Render()
 	return nil
 }
